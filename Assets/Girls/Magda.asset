@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0db8445b77a19e4db36fde1dd11972d, type: 3}
+  m_Name: Magda
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Magda
+  <Description>k__BackingField: "Szukam czego\u015B niezobowi\u0105zuj\u0105cego,
+    ma\u0142\u017Ce\u0144stwo, dzieci, wsp\xF3lny dom. Co\u015B takiego"
+  <Distance>k__BackingField: 2
+  <Age>k__BackingField: 22
+  <Avatar>k__BackingField: {fileID: -1352479395674833887, guid: 047d09c3b4e1d9f459e1beda2c013959, type: 3}
+  <Types>k__BackingField: 0100000003000000
+  <Traits>k__BackingField:
+  - Type: 2
+    Value: 4
+  - Type: 1
+    Value: 3
+  - Type: 0
+    Value: 2
+  - Type: 3
+    Value: 1

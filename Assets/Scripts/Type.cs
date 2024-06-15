@@ -19,3 +19,4 @@ public struct TypeValue
     public Type Type;
     public int Value;
 }
+

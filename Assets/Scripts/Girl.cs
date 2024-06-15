@@ -1,25 +1,28 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-[Serializable]
-public class Girl
+[CreateAssetMenu(fileName = "New Girl", menuName = "Engine/Girl")]
+public class Girl : ScriptableObject
 {
     [field: SerializeField] public string Name { get; private set; }
     [field: SerializeField] public string Description { get; set; }
-    [field: SerializeField] public List<Type> Types { get; private set; }
     [field: SerializeField] public int Distance { get; private set; }
     [field: SerializeField] public int Age { get; private set; }
     [field: SerializeField] public Sprite Avatar { get; set; }
+    [field: SerializeField] public List<Type> Types { get; private set; } 
     [field: SerializeField] public List<TypeValue> Traits { get; private set; }
+    [field: SerializeField] public List<int> Affections { get; private set; }
 
-    public void Randomize()
+
+    public void Init(int playerCount)
     {
-        Age = Random.Range(18, 25);
-        Distance = Random.Range(1, 30);
-        
+        Affections = new List<int> ( new int[playerCount] );
+        RandomizeTraits();
+    }
+
+    public void RandomizeTraits()
+    {
         var typeCount = Random.Range(2, 4);
         Types = new List<Type>();
         for (var i = 0; i < typeCount; i++)
@@ -31,8 +34,6 @@ public class Girl
             
             Types.Add(type);
         }
-
-        Name = Settings.GirlNames[Random.Range(0, Settings.GirlNames.Count)];
         
         Traits = new List<TypeValue>();
         var val = 4;

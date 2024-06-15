@@ -6,10 +6,5 @@ using UnityEngine;
 [Serializable]
 public class Conversation
 {
-    [field: SerializeField] public List<ConversationLine> Lines { get; private set; }
-
-    public void Init()
-    {
-        Lines = new List<ConversationLine>();
-    }
+    [field: SerializeField] public List<ConversationLine> Lines { get; private set; } = new List<ConversationLine>();
 }

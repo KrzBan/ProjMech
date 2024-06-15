@@ -11,7 +11,14 @@ public class Player
     [field: SerializeField] public Sprite Image { get; private set; }
     
     [Header("Inspector debug view only (DO NOT CHANGE)")]
-    [field: SerializeField] public Conversation Conversation { get; set; }
-    [field: SerializeField] public int CurrentScore { get; set; }
-    [field: SerializeField] public int Dates { get; set; }
+    [field: SerializeField] public List<Conversation> Conversations { get; set; }
+
+    public void Init(int girlsCount)
+    {
+        Conversations = new List<Conversation>();
+        for (int i = 0; i < girlsCount; i++)
+        {
+            Conversations.Add(new Conversation());
+        }
+    }
 }

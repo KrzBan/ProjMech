@@ -8,11 +8,11 @@ public static class Settings
     {
         "Karolina",
         "Kasia",
-        "Ania",
-        "Ola",
-        "Monika",
-        "Ewa",
-        "Magda",
+        "",
+        "",
+        "",
+        "",
+        "",
         "Agnieszka",
         "Natalia",
         "Klaudia",
@@ -32,10 +32,23 @@ public static class Settings
 
     public static List<string> Descriptions = new()
     {
-        "Przesuń w prawo, jeśli nie lubisz nudy",
-        "Plusy i minusy umawiania się ze mną: plus - nie będziesz singlem, wada - będziesz spotykał się ze mną...",
-        "Podaj mi swój najlepszy tekst na podryw",
-        "Szukam kogoś, kto będzie dojadał brzegi mojej pizzy ;) ",
-        "Szukam czegoś niezobowiązującego, małżeństwo, dzieci, wspólny dom. Coś takiego"
+        "",
+        "",
+        "",
+        "",
+        ""
+    };
+
+    public static List<string> AnswersPositive = new()
+    {
+        "haha :D"
+    };
+    public static List<string> AnswersNeutral = new()
+    {
+        "Ok"
+    };
+    public static List<string> AnswersNegative = new()
+    {
+        "ew"
     };
 }

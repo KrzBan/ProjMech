@@ -6,8 +6,11 @@ using UnityEngine;
 public class Card : ScriptableObject
 {
     public int ID;
-    public string Front;
-    public List<string> AnswersFront;
-    public List<CardOption> Back;
-    public List<Answer> AnswersBack;
+    public string Line;
+
+    public Type Trait;
+    public int Strength;
+
+    [Header("Optional")]
+    public string CustomAsnwer;
 }

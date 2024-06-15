@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ConversationWindow : MonoBehaviour
 {
@@ -26,5 +27,10 @@ public class ConversationWindow : MonoBehaviour
         
         foreach (var line in conversation.Lines)
             AddLine(line);
+    }
+
+    public static void ScrollToBottom(ScrollRect scrollRect)
+    {
+        scrollRect.normalizedPosition = new Vector2(0, 0);
     }
 }

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0db8445b77a19e4db36fde1dd11972d, type: 3}
+  m_Name: Ewa
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Ewa
+  <Description>k__BackingField: "Szukam kogo\u015B, kto b\u0119dzie dojada\u0142
+    brzegi mojej pizzy ;) "
+  <Distance>k__BackingField: 3
+  <Age>k__BackingField: 20
+  <Avatar>k__BackingField: {fileID: 6038554633909149522, guid: a142ad2824e95c24296e24f57f37d252, type: 3}
+  <Types>k__BackingField: 0200000001000000
+  <Traits>k__BackingField:
+  - Type: 2
+    Value: 4
+  - Type: 0
+    Value: 3
+  - Type: 3
+    Value: 2
+  - Type: 1
+    Value: 1
