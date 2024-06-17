@@ -25,6 +25,12 @@ public class Game : MonoBehaviour
     [SerializeField] private TMP_InputField cardIDInput;
     [SerializeField] private Button cardSendButton;
 
+    [SerializeField] private CanvasGroup playerSelectCanvasGroup;
+    [SerializeField] private CanvasGroup gameCanvasGroup;
+
+    [SerializeField] private Transform playerSelectPanel;
+    [SerializeField] private GameObject playerPanelPrefab;
+
     [Header("Settings")] 
     [SerializeField] private List<Player> players;
     [SerializeField] private List<Card> cards;
@@ -42,13 +48,12 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-        players.ForEach(p => { p.Init(girls.Count); });
-        girls.ForEach(g => { g.Init(players.Count); });
+        players.ForEach(player => {
+            var panel = Instantiate(playerPanelPrefab, playerSelectPanel);
+            panel.GetComponent<PlayerSelectPanel>().SetupUI(player.Image, player.Name, 
+                (bool setActive) => { player.Selected = setActive; });
 
-        var shuffledcards = players.OrderBy(_ => Random.Range(0, 1000)).ToList();
-
-        RandomizeGirl();
-        UpdateVisuals();
+        });
     }
 
     public void RandomizeGirl()
@@ -76,17 +81,35 @@ public class Game : MonoBehaviour
         cardIDInput.text = "";
     }
 
-    IEnumerator IUpdateVisuals(float time = 3f)
-    {
-        yield return new WaitForSecondsRealtime(time);
-        UpdateVisuals();
-    }
-
     public void OnCardSendButtonClicked()
     {
         // Card select
-        var cardID = int.Parse(cardIDInput.text);
+        int cardID = 0;
+        bool error = false;
+        try {
+            cardID = int.Parse(cardIDInput.text);
+        }
+        catch {
+            error = true;
+        }
+
+        if( cardID < 0 || cardID >= cards.Count ) {
+            error = true;
+        }
+
+        if (error) {
+            cardIDInput.text = string.Empty;
+            return;
+        }
+
         var card = cards.FirstOrDefault(c => c.ID == cardID);
+        StartCoroutine(IOnPlayerInput(card));
+    }
+
+    IEnumerator IOnPlayerInput(Card card)
+    {
+        cardIDInput.DeactivateInputField();
+
         var player = players[currentPlayerIndex];
         var line = new ConversationLine()
         {
@@ -96,7 +119,14 @@ public class Game : MonoBehaviour
         };
         player.Conversations[currentGirlId].Lines.Add(line);
         conversationWindow.AddLine(line);
-        
+
+        UpdateVisuals();
+        yield return new WaitForSecondsRealtime(1.0f);
+        StartCoroutine(IOnGirlResponse(card));
+    }
+
+    IEnumerator IOnGirlResponse(Card card)
+    {
         var score = currentGirl.Traits.FirstOrDefault(t => t.Type == card.Trait).Value;
         score = score switch
         {
@@ -111,37 +141,45 @@ public class Game : MonoBehaviour
 
         var answerOption = score switch
         {
-            < -1 => Settings.AnswersNegative[Random.Range(0, Settings.AnswersNegative.Count)],
-            > 1 => Settings.AnswersPositive[Random.Range(0, Settings.AnswersPositive.Count)],
-            _ => Settings.AnswersNeutral[Random.Range(0, Settings.AnswersNeutral.Count)]
+            < 0 => Settings.AnswersNegative[Random.Range(0, Settings.AnswersNegative.Count)],
+            _ => Settings.AnswersPositive[Random.Range(0, Settings.AnswersPositive.Count)]
         };
 
-        if(string.IsNullOrEmpty(card.CustomAsnwer) == false)
+        if (string.IsNullOrEmpty(card.CustomAsnwer) == false)
         {
             answerOption = card.CustomAsnwer;
         }
 
-        var answer2 = new ConversationLine()
+        var answer = new ConversationLine()
         {
             ID = 0,
             Text = answerOption,
             IsPlayer = false
         };
-        player.Conversations[currentGirlId].Lines.Add(answer2);
-        conversationWindow.AddLine(answer2);
+        players[currentPlayerIndex].Conversations[currentGirlId].Lines.Add(answer);
+        conversationWindow.AddLine(answer);
 
+        UpdateVisuals();
+        yield return new WaitForSecondsRealtime(1.0f);
+        EndTurn();
+    }
+
+    private void EndTurn()
+    {
         ++currentPlayerIndex;
         if (currentPlayerIndex >= players.Count)
         {
             EndRound();
-        }   
-        
+        }
+
         if (roundCounter >= rounds)
         {
             EndGame();
         }
-           
-        StartCoroutine(IUpdateVisuals(0f));
+
+        UpdateVisuals();
+
+        cardIDInput.ActivateInputField();
     }
 
     private void EndRound()
@@ -154,5 +192,32 @@ public class Game : MonoBehaviour
     private void EndGame()
     {
         // Game finished, select winner
+        Debug.Log("Game Finished!");
+    }
+
+    public void StartGameUI()
+    {
+        var selectedPlayers = players.Where(p => p.Selected);
+        if (selectedPlayers.Count() < 2) return;
+
+        players = selectedPlayers.ToList();
+
+        players.ForEach(p => { p.Init(girls.Count); });
+        girls.ForEach(g => { g.Init(players.Count); });
+
+        // Shuffle players
+        players= players.OrderBy(_ => Random.Range(0, 1000)).ToList();
+
+        RandomizeGirl();
+        UpdateVisuals();
+
+        playerSelectCanvasGroup.alpha = 0.0f;
+        playerSelectCanvasGroup.blocksRaycasts = false;
+        playerSelectCanvasGroup.interactable = false;
+
+        gameCanvasGroup.alpha = 1.0f;
+        gameCanvasGroup.blocksRaycasts = true;
+        gameCanvasGroup.interactable = true;
+
     }
 }

@@ -12,6 +12,8 @@ public class Player
     
     [Header("Inspector debug view only (DO NOT CHANGE)")]
     [field: SerializeField] public List<Conversation> Conversations { get; set; }
+    [field: SerializeField] public bool Selected { get; set; } = false;
+
 
     public void Init(int girlsCount)
     {

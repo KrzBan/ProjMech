@@ -13,22 +13,7 @@ MonoBehaviour:
   m_Name: Card1
   m_EditorClassIdentifier: 
   ID: 1
-  Front: text
-  AnswersFront:
-  - ok
-  Back:
-  - TypeValue:
-      Type: 0
-      Value: 3
-    Text: odp1
-  - TypeValue:
-      Type: 3
-      Value: 1
-    Text: odp2
-  AnswersBack:
-  - Type: 0
-    Text: <3
-  - Type: 1
-    Text: ok
-  - Type: 2
-    Text: '?'
+  Line: "Masz patent ratownika? Bo czuj\u0119, \u017Ce ton\u0119 w twoich oczach."
+  Trait: 0
+  Strength: 2
+  CustomAsnwer: 

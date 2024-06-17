@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Card0
   m_EditorClassIdentifier: 
   ID: 0
-  Line: 
+  Line: "Cze\u015B\u0107 ksi\u0119\u017Cniczko, szukasz mo\u017Ce ksi\u0119cia?"
   Trait: 0
-  Strength: 0
-  CustomAsnwer: CustomAnswerTest
+  Strength: 1
+  CustomAsnwer: 
