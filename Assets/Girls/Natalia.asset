@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0db8445b77a19e4db36fde1dd11972d, type: 3}
+  m_Name: Natalia
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Natalia
+  <Description>k__BackingField: "Piek\u0119 \u015Bwietn\u0105 karpatk\u0119."
+  <Distance>k__BackingField: 4
+  <Age>k__BackingField: 21
+  <Avatar>k__BackingField: {fileID: -8002313065038194742, guid: e0a573e6d9a05b44bbb52666deed4683, type: 3}
+  <Types>k__BackingField: 010000000200000003000000
+  <Traits>k__BackingField:
+  - Type: 0
+    Value: 4
+    Revealed: 0
+  - Type: 3
+    Value: 3
+    Revealed: 0
+  - Type: 2
+    Value: 2
+    Revealed: 0
+  - Type: 1
+    Value: 1
+    Revealed: 0
+  <Affections>k__BackingField: 0000000000000000
+  <Appeared>k__BackingField: 0

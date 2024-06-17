@@ -13,12 +13,14 @@ public class Girl : ScriptableObject
     [field: SerializeField] public List<Type> Types { get; private set; } 
     [field: SerializeField] public List<TypeValue> Traits { get; private set; }
     [field: SerializeField] public List<int> Affections { get; private set; }
+    [field: SerializeField] public bool Appeared { get; set; }
 
 
     public void Init(int playerCount)
     {
         Affections = new List<int> ( new int[playerCount] );
         RandomizeTraits();
+        Appeared = false;
     }
 
     public void RandomizeTraits()

@@ -39,10 +39,16 @@ public class Game : MonoBehaviour
     [SerializeField] private CanvasGroup victoryPanelCanvasGroup;
     [SerializeField] private TMP_Text victoryText;
 
-    [SerializeField] private TMP_Text textA;
-    [SerializeField] private TMP_Text textB;
-    [SerializeField] private TMP_Text textC;
-    [SerializeField] private TMP_Text textD;
+    [SerializeField] private Image imageA;
+    [SerializeField] private Image imageB;
+    [SerializeField] private Image imageC;
+    [SerializeField] private Image imageD;
+
+    [SerializeField] private Sprite spriteSport;
+    [SerializeField] private Sprite spriteChill;
+    [SerializeField] private Sprite spriteDrinks;
+    [SerializeField] private Sprite spriteHug;
+    [SerializeField] private Sprite spriteUnknown;
 
 
     [Header("Settings")] 
@@ -91,6 +97,7 @@ public class Game : MonoBehaviour
         }
         currentGirlId = newGirlId;
         currentGirl = girls[currentGirlId];
+        currentGirl.Appeared = true;
     }
 
     public void UpdateVisuals()
@@ -104,24 +111,33 @@ public class Game : MonoBehaviour
         playerName.text = players[currentPlayerIndex].Name;
         conversationWindow.FillConversation(players[currentPlayerIndex].Conversations[currentGirlId]);
 
-        string defaultString = "???? ????";
-        textA.text = defaultString;
-        textB.text = defaultString;
-        textC.text = defaultString;
-        textD.text = defaultString;
-
+        imageA.sprite = spriteUnknown;
+        imageB.sprite = spriteUnknown;
+        imageC.sprite = spriteUnknown;
+        imageD.sprite = spriteUnknown;
+        
         foreach (var trait in currentGirl.Traits){
             if(trait.Revealed == false)
             {
                 continue;
             }
 
+            Image selectedImage;
             switch (trait.Value)
             {
-                case 4: textA.text = TypeUtils.TypeToString(trait.Type); break;
-                case 3: textB.text = TypeUtils.TypeToString(trait.Type); break;
-                case 2: textC.text = TypeUtils.TypeToString(trait.Type); break;
-                case 1: textD.text = TypeUtils.TypeToString(trait.Type); break;
+                default:
+                case 4: selectedImage = imageA; break;
+                case 3: selectedImage = imageB; break;
+                case 2: selectedImage = imageC; break;
+                case 1: selectedImage = imageD; break;
+            }
+
+            switch (trait.Type)
+            {
+                case Type.Sport: selectedImage.sprite = spriteSport; break;
+                case Type.Chill: selectedImage.sprite = spriteChill; break;
+                case Type.Wrazliwosc: selectedImage.sprite = spriteHug; break;
+                case Type.Zwierzeta: selectedImage.sprite = spriteDrinks; break;
             }
         }
 
@@ -223,6 +239,10 @@ public class Game : MonoBehaviour
         if (currentPlayerIndex >= players.Count)
         {
             EndRound();
+            if(roundCounter < rounds)
+            {
+                RandomizeGirl();
+            }
         }
 
         if (roundCounter >= rounds)
@@ -240,9 +260,7 @@ public class Game : MonoBehaviour
     private void EndRound()
     {
         roundCounter++;
-        currentPlayerIndex = 0;
-
-        RandomizeGirl();
+        currentPlayerIndex = 0;     
     }
     private IEnumerator IEndGame()
     {
@@ -258,6 +276,8 @@ public class Game : MonoBehaviour
 
         girls.ForEach(girl =>
         {
+            if (girl.Appeared == false) return;
+
             var maxAffection = girl.Affections.Max();
             var favoritePlayerIds = new List<int>();
             for(int i = 0; i < girl.Affections.Count; i++)
