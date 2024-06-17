@@ -39,6 +39,11 @@ public class Game : MonoBehaviour
     [SerializeField] private CanvasGroup victoryPanelCanvasGroup;
     [SerializeField] private TMP_Text victoryText;
 
+    [SerializeField] private TMP_Text textA;
+    [SerializeField] private TMP_Text textB;
+    [SerializeField] private TMP_Text textC;
+    [SerializeField] private TMP_Text textD;
+
 
     [Header("Settings")] 
     [SerializeField] private List<Player> players;
@@ -99,6 +104,27 @@ public class Game : MonoBehaviour
         playerName.text = players[currentPlayerIndex].Name;
         conversationWindow.FillConversation(players[currentPlayerIndex].Conversations[currentGirlId]);
 
+        string defaultString = "???? ????";
+        textA.text = defaultString;
+        textB.text = defaultString;
+        textC.text = defaultString;
+        textD.text = defaultString;
+
+        foreach (var trait in currentGirl.Traits){
+            if(trait.Revealed == false)
+            {
+                continue;
+            }
+
+            switch (trait.Value)
+            {
+                case 4: textA.text = TypeUtils.TypeToString(trait.Type); break;
+                case 3: textB.text = TypeUtils.TypeToString(trait.Type); break;
+                case 2: textC.text = TypeUtils.TypeToString(trait.Type); break;
+                case 1: textD.text = TypeUtils.TypeToString(trait.Type); break;
+            }
+        }
+
         cardIDInput.text = "";
     }
 
@@ -150,7 +176,11 @@ public class Game : MonoBehaviour
 
     IEnumerator IOnGirlResponse(Card card)
     {
-        var score = currentGirl.Traits.FirstOrDefault(t => t.Type == card.Trait).Value;
+        int traitIndex = currentGirl.Traits.FindIndex(t => t.Type == card.Trait);
+        currentGirl.Traits[traitIndex].Revealed = true;
+
+        var trait = currentGirl.Traits[traitIndex];
+        var score = trait.Value;
         score = score switch
         {
             1 => -2,
@@ -263,7 +293,7 @@ public class Game : MonoBehaviour
         yield return new WaitForSecondsRealtime(4.0f);
 
         victoryPanelCanvasGroup.alpha = 1.0f;
-        string text = winnerNames.Count == 1 ? "Zwyciężcą został:\n" : "Zwyciężcami są:\n";
+        string text = winnerNames.Count == 1 ? "Zwycięzcą został:\n" : "Zwycięzcami są:\n";
         winnerNames.ForEach(name => { text += name; text += '\n'; });
         victoryText.text = text;
     }
