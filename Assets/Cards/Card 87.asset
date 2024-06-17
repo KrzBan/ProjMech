@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e13c0b564f24a9d4ea72a1a74b84d96b, type: 3}
+  m_Name: Card 87
+  m_EditorClassIdentifier: 
+  ID: 87
+  Line: "\u0141\u0105czy nas chyba co\u015B pot\u0119\u017Cniejszego ni\u017C kana\u0142
+    Ostr\xF3d\u0119 z Elbl\u0105giem."
+  Trait: 3
+  Strength: 5
+  CustomAsnwer: 

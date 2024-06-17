@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e13c0b564f24a9d4ea72a1a74b84d96b, type: 3}
+  m_Name: Card 21
+  m_EditorClassIdentifier: 
+  ID: 21
+  Line: "Nie je\u017Adzisz mo\u017Ce konno? Ze mn\u0105 mo\u017Cesz trenowa\u0107
+    nawet w domu."
+  Trait: 2
+  Strength: 2
+  CustomAsnwer: 

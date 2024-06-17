@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e13c0b564f24a9d4ea72a1a74b84d96b, type: 3}
+  m_Name: Card 62
+  m_EditorClassIdentifier: 
+  ID: 62
+  Line: "Woow, wygl\u0105dasz jak mikrofal\xF3wka, bo mmmmmmmmmmmm beeep beeep beeep
+    beeep"
+  Trait: 2
+  Strength: 6
+  CustomAsnwer: 
